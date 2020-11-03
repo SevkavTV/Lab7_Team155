@@ -1,5 +1,7 @@
 def happy_number(n: int):
     """
+    Tells if number is happy
+
     >>> happy_number(32)
     True
     >>> happy_number(33)
@@ -18,4 +20,7 @@ def happy_number(n: int):
 
 
 def generate(n):
+    '''
+    Generates happy numbers in given 
+    '''
     return [i for i in range(n) if happy_number(i)]
