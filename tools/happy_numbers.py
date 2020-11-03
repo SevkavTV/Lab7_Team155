@@ -1,12 +1,12 @@
 def happy_number(n: int):
-    """
+    '''
     Tells if number is happy
 
     >>> happy_number(32)
     True
     >>> happy_number(33)
     False
-    """
+    '''
     figures = list(str(n))
     while len(figures) != 1:
         result = 0
