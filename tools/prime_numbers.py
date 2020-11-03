@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-def checked_prime_numbers(n: int) -> list:
+def prime_numbers(n: int) -> list:
     '''
     Generate all checked_prime numbers up to n.
 
@@ -19,7 +18,7 @@ def checked_prime_numbers(n: int) -> list:
         # if number is prime
         if checked_prime[i]:
 
-            # delete all numbers which divide temp
+            # delete all numbers which divide tsemp
             for j in range(i*2, n + 1, i):
                 checked_prime[j] = False
     
@@ -28,6 +27,3 @@ def checked_prime_numbers(n: int) -> list:
     return prime
 
 print(checked_prime_numbers(20))
-=======
-#test
->>>>>>> 9b4c01574b6cefb75ba35f507cfa149a274c5f97
