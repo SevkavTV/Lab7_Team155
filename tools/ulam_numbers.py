@@ -1,4 +1,4 @@
-def numbers_Ulam(n: int) -> list:
+def ulam_numbers(n: int) -> list:
     """
     Function returns the list of Ulam numbers of the given range.
 
@@ -9,9 +9,9 @@ def numbers_Ulam(n: int) -> list:
     2. Next Ulam is the sum of two previous Ulams.
     3. There's only one way to find the next Ulam.
 
-    >>> numbers_Ulam(10)
+    >>> ulam_numbers(10)
     [1, 2, 3, 4, 6, 8]
-    >>> numbers_Ulam(3)
+    >>> ulam_numbers(3)
     [1, 2]
     """
 

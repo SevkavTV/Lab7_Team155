@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 def checked_prime_numbers(n: int) -> list:
     '''
     Generate all checked_prime numbers up to n.
@@ -27,3 +28,6 @@ def checked_prime_numbers(n: int) -> list:
     return prime
 
 print(checked_prime_numbers(20))
+=======
+#test
+>>>>>>> 9b4c01574b6cefb75ba35f507cfa149a274c5f97
