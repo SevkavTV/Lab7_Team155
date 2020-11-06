@@ -1,7 +1,6 @@
-def happy_number(n: int):
+def happy_number_bool(n: int):
     '''
     Tells if number is happy
-
     >>> happy_number(32)
     True
     >>> happy_number(33)
@@ -19,8 +18,10 @@ def happy_number(n: int):
     return False
 
 
-def generate(n):
+
+def happy_numbers(n):
     '''
     Generates happy numbers in given 
     '''
-    return [i for i in range(n) if happy_number(i)]
+    return [i for i in range(n) if happy_number_bool(i)]
+
