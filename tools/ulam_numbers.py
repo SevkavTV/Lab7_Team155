@@ -2,10 +2,12 @@ def ulam_numbers(n: int) -> list:
     """
     Function returns the list of Ulam numbers of the given range.
     If parameter n is not an int function returns None.
+
     Ulam numbers sequence:
     1. Next Ulam number is bigger than the last one.
     2. Next Ulam is the sum of two previous Ulams.
     3. There's only one way to find the next Ulam.
+
     >>> ulam_numbers(10)
     [1, 2, 3, 4, 6, 8]
     >>> ulam_numbers(3)

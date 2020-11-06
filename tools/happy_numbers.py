@@ -18,8 +18,10 @@ def happy_number_bool(n: int):
     return False
 
 
+
 def happy_numbers(n):
     '''
     Generates happy numbers in given 
     '''
     return [i for i in range(n) if happy_number_bool(i)]
+

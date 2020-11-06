@@ -24,3 +24,4 @@ def prime_numbers(n: int) -> list:
     prime = [index for index in range(n+1) if checked_prime[index]]
 
     return prime
+
