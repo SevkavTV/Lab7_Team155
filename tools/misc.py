@@ -88,7 +88,6 @@ def gamestart():
         prime = True
     else:
         prime = False
-
     if not prime and not happy and not ulams:
         print("----" * 15)
         print("You have to choose at least one game mode!")
@@ -101,7 +100,6 @@ def gamestart():
 
     print("----" * 15)
     width = int(input("Which board size you want? (4-8) \n"))
-
     return width, 100, ulams, happy, prime
 
 
@@ -118,7 +116,6 @@ if __name__ == "__main__":
         message += "(happy_numbers) "
     if grid_param[4]:
         message += "(prime_numbers) "
-
     grid_corrects = [num for num in corrects if num in grid]
 
     while len(grid_corrects) > 0:
