@@ -1,7 +1,6 @@
 def prime_numbers(n: int) -> list:
     '''
     Generate all checked_prime numbers up to n.
-
     >>> checked_prime_numbers(40)
     [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37]
     >>> checked_prime_numbers(80)
@@ -26,4 +25,3 @@ def prime_numbers(n: int) -> list:
 
     return prime
 
-print(checked_prime_numbers(20))

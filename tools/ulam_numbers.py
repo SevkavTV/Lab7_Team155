@@ -1,7 +1,6 @@
 def ulam_numbers(n: int) -> list:
     """
     Function returns the list of Ulam numbers of the given range.
-
     If parameter n is not an int function returns None.
 
     Ulam numbers sequence:
