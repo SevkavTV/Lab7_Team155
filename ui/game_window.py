@@ -4,6 +4,7 @@ Fix black blinking while refreshing text
 Write endgame function
 '''
 import tkinter
+import threading
 
 # Loading misc module. Idk how to do it better. Python is shit in this
 
@@ -21,33 +22,58 @@ misc = load_misc_module()
 color_bg = '#3E4149'
 color_white = 'white'
 
-score = 0
+# Game config, should be passed from start menu
 seconds_constant = 10
+lives_constant = 3
+game_mode = 'Happy | Ulam | Prime'
+
+# Dynamic ingame values
+score = 0
 seconds = seconds_constant
-lives = 10
 
-# Initing window
-root = tkinter.Tk()
-root.title('VASHE_POHUI')
-root.geometry('500x500')
-root.resizable(False, False)
-root.configure(background=color_bg)
 
-# Initing frame
-frame = tkinter.Frame(root)
-frame.grid(row=0, column=0)
-frame.pack(expand=True)
+def number_to_hearts(n):
+    return ''.join(['❤️' for _ in range(n)])
 
-# Initing labels
-label_gamemode = tkinter.Label(
-    text="Game mode: UPH", bg=color_bg, fg=color_white)
-label_time = tkinter.Label(
-    text="Time left: 00:10", bg=color_bg, fg=color_white)
-label_score = tkinter.Label(
-    text="Your score: 0", bg=color_bg, fg=color_white)
-label_gamemode.pack()
-label_time.pack()
-label_score.pack()
+
+lives = lives_constant
+
+root = None
+frame = None
+label_gamemode = None
+label_time = None
+label_score = None
+label_lives = None
+
+
+def init():
+    global root, frame, label_gamemode, label_time, label_score, label_lives
+    # Initing window
+    root = tkinter.Tk()
+    root.title('VASHE_POHUI')
+    root.geometry('500x500')
+    root.resizable(False, False)
+    root.configure(background=color_bg)
+
+    # Initing frame
+    frame = tkinter.Frame(root)
+    frame.grid(row=0, column=0)
+    frame.pack(expand=True)
+
+    # Initing labels
+    label_gamemode = tkinter.Label(
+        text=f"Game mode: {game_mode}", bg=color_bg, fg=color_white)
+    label_time = tkinter.Label(
+        text=f"Time left: {seconds}", bg=color_bg, fg=color_white)
+    label_score = tkinter.Label(
+        text="Your score: 0", bg=color_bg, fg=color_white)
+    label_lives = tkinter.Label(
+        text=f"Lives: {number_to_hearts(lives)}", bg=color_bg, fg=color_white)
+    label_gamemode.pack()
+    label_time.pack()
+    label_score.pack()
+    label_lives.pack()
+
 
 # Gen game field
 grid_size = 7
@@ -64,21 +90,43 @@ def main(height=5, width=5):
             btn = tkinter.Button(frame,  text=item, width=2, height=1,
                                  highlightbackground='#3E4149',  activebackground='black')
             btn.grid(column=y, row=x)
-            btn['command'] = lambda btn = btn: click(btn)
+            btn.bind(f'<Button>', click)
     return frame
 
 
-def click(button):
-    global seconds_contant, seconds, score, lives
-    if int(button['text']) in game_field[1]:
-        button['text'] = '✅'
-        score += 1
-        seconds = seconds_constant
-    else:
-        button['text'] = '❌'
-        lives -= 1
-    button['state'] = 'disable'
+def reset_timer():
+    global seconds
+    seconds = seconds_constant
+
+
+def substact_life():
+    global lives
+    lives -= 1
+    reset_timer()
+    label_lives.config(text=f'Lives: {number_to_hearts(lives)}')
+    if lives == 0:
+        return endgame()
+
+
+def add_point():
+    global score, seconds
+    score += 1
+    seconds = seconds_constant
     label_score.config(text=f'Your score: {score}')
+
+
+def click(event):
+    button = event.widget
+    if event.num == 1 and int(button['text']) in game_field[1]:
+        button['text'] = '✅'
+        add_point()
+    elif event.num == 2 and int(button['text']) not in game_field[1]:
+        button['text'] = '❌'
+        reset_timer()
+    else:
+        button['text'] = '💀'
+        substact_life()
+    button['state'] = 'disable'
 
 
 def timer():
@@ -89,10 +137,12 @@ def timer():
     global seconds
     seconds_to_disp = f"0{seconds}" if len(str(seconds)) == 1 else f"{seconds}"
     label_time.config(
-        text=f"Time left: 00:{seconds_to_disp}", bg=color_bg, fg=color_white)
+        text=f"Time left: 00:{seconds_to_disp}")
     if seconds == 0:
-        return endgame()
-    seconds -= 1
+        substact_life()
+        reset_timer()
+    else:
+        seconds -= 1
 
     root.after(1000, timer)
 
@@ -101,6 +151,12 @@ def endgame():
     print('Endgame triggered')
 
 
-main(grid_size, grid_size)
-timer()
-tkinter.mainloop()
+def start_window():
+    init()
+    main(grid_size, grid_size)
+    timer()
+
+
+if __name__ == '__main__':
+    start_window()
+    tkinter.mainloop()
