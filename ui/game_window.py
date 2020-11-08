@@ -47,6 +47,9 @@ label_score = None
 label_lives = None
 grid_size = None
 game_field = None
+game_status = None
+timer_running = True
+timer_obj = None
 
 
 def init():
@@ -139,6 +142,7 @@ def click(event):
 
 
 def timer():
+    global timer_obj
     '''
     Player has seconds_contant seconds to guess a number, if not game will end
     If player guesses timer is restored
@@ -153,14 +157,19 @@ def timer():
     else:
         seconds -= 1
 
-    root.after(1000, timer)
+    if timer_running:
+        timer_obj = root.after(1000, timer)
+    else:
+        root.destroy()
+        import results_window
+        results_window.status = game_status
+        results_window.init()
 
 
 def endgame(status):
-    root.destroy()
-    import results_window
-    results_window.status = status
-    results_window.init()
+    global game_status, timer_running
+    timer_running = False
+    game_status = status
 
 
 def create_grid():
@@ -175,8 +184,9 @@ def start_window():
     init()
     main(grid_size, grid_size)
     timer()
+    tkinter.mainloop()
 
 
 if __name__ == '__main__':
     start_window()
-    tkinter.mainloop()
+    # tkinter.mainloop()

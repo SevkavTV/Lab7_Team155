@@ -31,4 +31,6 @@ def init():
 
 
 def return_to_menu():
-    print('Go to menu')
+    root.destroy()
+    import start_window
+    start_window.init()
