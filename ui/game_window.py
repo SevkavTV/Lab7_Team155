@@ -108,7 +108,7 @@ def substact_life():
     reset_timer()
     label_lives.config(text=f'Lives: {number_to_hearts(lives)}')
     if lives == 0:
-        return endgame()
+        return endgame('lose')
 
 
 def add_point():
@@ -120,8 +120,14 @@ def add_point():
 
 def click(event):
     button = event.widget
+    print(game_field[1])
     if event.num == 1 and int(button['text']) in game_field[1]:
+        game_field[1].remove(int(button['text']))
         button['text'] = '✅'
+
+        if len(game_field[1]) == 0:
+            endgame('win')
+
         add_point()
     elif event.num == 2 and int(button['text']) not in game_field[1]:
         button['text'] = '❌'
@@ -150,12 +156,11 @@ def timer():
     root.after(1000, timer)
 
 
-def endgame():
+def endgame(status):
     root.destroy()
-    import game_window
-    game_window.lives = 10
-    game_window.game_mode = [var1.get(), var2.get(), var3.get()]
-    game_window.start_window()
+    import results_window
+    results_window.status = status
+    results_window.init()
 
 
 def create_grid():

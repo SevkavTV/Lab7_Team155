@@ -5,7 +5,7 @@ from PIL import ImageTk, Image
 def start_game():
     root.destroy()
     import game_window
-    game_window.lives = 10
+    game_window.lives = 3
     game_window.game_mode = [var1.get(), var2.get(), var3.get()]
     game_window.start_window()
 
