@@ -25,7 +25,8 @@ color_white = 'white'
 # Game config, should be passed from start menu
 seconds_constant = 10
 lives_constant = 3
-game_mode = 'Happy | Ulam | Prime'
+mode_strings = ['Ulam', 'Happy', 'Prime']
+game_mode = []
 
 # Dynamic ingame values
 score = 0
@@ -44,6 +45,8 @@ label_gamemode = None
 label_time = None
 label_score = None
 label_lives = None
+grid_size = None
+game_field = None
 
 
 def init():
@@ -59,10 +62,16 @@ def init():
     frame = tkinter.Frame(root)
     frame.grid(row=0, column=0)
     frame.pack(expand=True)
+    # Initing labels, game mode, grid
+    create_grid()
 
-    # Initing labels
+    game_string_list = []
+    for index, item in enumerate(game_mode):
+        if item == 1:
+            game_string_list.append(mode_strings[index])
+
     label_gamemode = tkinter.Label(
-        text=f"Game mode: {game_mode}", bg=color_bg, fg=color_white)
+        text=f"Game mode: {' | '.join(game_string_list)}", bg=color_bg, fg=color_white)
     label_time = tkinter.Label(
         text=f"Time left: {seconds}", bg=color_bg, fg=color_white)
     label_score = tkinter.Label(
@@ -73,12 +82,6 @@ def init():
     label_time.pack()
     label_score.pack()
     label_lives.pack()
-
-
-# Gen game field
-grid_size = 7
-game_field = misc.random_grid(
-    grid_size, 100, True, False, False)
 
 
 def main(height=5, width=5):
@@ -148,7 +151,19 @@ def timer():
 
 
 def endgame():
-    print('Endgame triggered')
+    root.destroy()
+    import game_window
+    game_window.lives = 10
+    game_window.game_mode = [var1.get(), var2.get(), var3.get()]
+    game_window.start_window()
+
+
+def create_grid():
+    global grid_size, game_field
+
+    grid_size = 7
+    game_field = misc.random_grid(
+        grid_size, 100, game_mode[0], game_mode[1], game_mode[2])
 
 
 def start_window():

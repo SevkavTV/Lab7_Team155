@@ -1,24 +1,46 @@
-import tkinter
-
-window2 = tkinter.Tk()
-window2.geometry('500x500')
-# window1 = game_window.get_window()
-# window2.withdraw()
-frame = tkinter.Frame(window2)
-frame.grid(row=1, column=1)
-frame.pack(expand=True)
-start_btn = tkinter.Button(frame, text="123", fg='black')
-start_btn.grid(column=1, row=1)
+from tkinter import *
+from PIL import ImageTk, Image
 
 
-def click():
-    window2.destroy()  # Close current window
-    import game_window  # Import game window
-    game_window.lives = 10  # Setting all game vars
-    game_window.start_window()  # Launchung game window
+def start_game():
+    root.destroy()
+    import game_window
+    game_window.lives = 10
+    game_window.game_mode = [var1.get(), var2.get(), var3.get()]
+    game_window.start_window()
 
 
-start_btn['command'] = click
+root = Tk()
+root.geometry("500x500")
+root.resizable(False, False)
+root.title("I hope i am not fucked")
+root.iconbitmap("among_us.ico")
+
+my_image = ImageTk.PhotoImage(Image.open("fr1.gif"))
+my_label = Label(root, image=my_image)
+my_label.place(x=0, y=0)
 
 
-tkinter.mainloop()
+start_button = Button(root, text="START", padx=50, command=start_game)
+start_button.pack(pady=50)
+
+frame = LabelFrame(root, text="Choose game options")
+frame.pack()
+
+var1 = IntVar()
+option1 = Checkbutton(frame, text="Ulam's numbers", variable=var1)
+option1.pack()
+
+var2 = IntVar()
+option2 = Checkbutton(frame, text="Happy numbers", variable=var2)
+option2.pack()
+
+var3 = IntVar()
+option3 = Checkbutton(frame, text="Prime numbers", variable=var3)
+option3.pack()
+
+button_quit = Button(root, text="Exit", padx=20, pady=5, command=root.quit)
+button_quit.pack(pady=100)
+
+
+root.mainloop()
