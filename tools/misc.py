@@ -46,11 +46,13 @@ def random_grid(grid_width: int,
 
         if coef == 1:
             rnd_correct = choice(correct_list)
-            grid.append(rnd_correct)
-            correct_in_grid.append(rnd_correct)
-
+            if rnd_correct not in grid:
+                grid.append(rnd_correct)
+                correct_in_grid.append(rnd_correct)
         else:
-            grid.append(choice(incorrect_list))
+            rnd_incorrect = choice(incorrect_list)
+            if rnd_incorrect not in grid:
+                grid.append(rnd_incorrect)
 
     return grid, correct_in_grid
 
