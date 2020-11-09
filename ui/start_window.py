@@ -12,6 +12,7 @@ def start_game():
     game_window.start_window()
 
 
+
 def init():
     global root, var1, var2, var3
     root = Tk()
@@ -19,6 +20,7 @@ def init():
     root.resizable(False, False)
     root.title("I hope i am not fucked")
     root.iconbitmap("among_us.ico")
+
 
     my_image = ImageTk.PhotoImage(Image.open("fr1.gif"))
     my_label = Label(root, image=my_image)
@@ -33,6 +35,7 @@ def init():
     var1 = IntVar()
     option1 = Checkbutton(frame, text="Ulam's numbers", variable=var1)
     option1.pack()
+
 
     var2 = IntVar()
     option2 = Checkbutton(frame, text="Happy numbers", variable=var2)

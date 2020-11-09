@@ -56,7 +56,7 @@ def init():
     global root, frame, label_gamemode, label_time, label_score, label_lives
     # Initing window
     root = tkinter.Tk()
-    root.title('VASHE_POHUI')
+    root.title('HACKtheBOB')
     root.geometry('500x500')
     root.resizable(False, False)
     root.configure(background=color_bg)
@@ -74,11 +74,11 @@ def init():
             game_string_list.append(mode_strings[index])
 
     label_gamemode = tkinter.Label(
-        text=f"Game mode: {' | '.join(game_string_list)}", bg=color_bg, fg=color_white)
+        text=f"Password type: {' | '.join(game_string_list)}", bg=color_bg, fg=color_white)
     label_time = tkinter.Label(
         text=f"Time left: {seconds}", bg=color_bg, fg=color_white)
     label_score = tkinter.Label(
-        text="Your score: 0", bg=color_bg, fg=color_white)
+        text="Your progress: 0", bg=color_bg, fg=color_white)
     label_lives = tkinter.Label(
         text=f"Lives: {number_to_hearts(lives)}", bg=color_bg, fg=color_white)
     label_gamemode.pack()
