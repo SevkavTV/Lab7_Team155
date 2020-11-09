@@ -1,11 +1,4 @@
-'''
-TODO:
-Fix black blinking while refreshing text
-Write endgame function
-'''
 import tkinter
-
-# Loading misc module. Idk how to do it better. Python is shit in this
 
 
 def load_misc_module():
