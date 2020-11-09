@@ -4,14 +4,13 @@ Fix black blinking while refreshing text
 Write endgame function
 '''
 import tkinter
-import threading
 
 # Loading misc module. Idk how to do it better. Python is shit in this
 
 
 def load_misc_module():
     import sys
-    sys.path.append(sys.path[0] + '/../tools')
+    sys.path.append(sys.path[0] + '/tools')
     import misc
     return misc
 
