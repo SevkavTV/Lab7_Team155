@@ -1,14 +1,15 @@
 from tkinter import *
 from PIL import ImageTk, Image
 
-root = Tk()
 
 status = ''
 
+root = None
+
 
 def init():
-    global status
-
+    global status, root
+    root = Tk()
     root.geometry("500x500")
     root.resizable(False, False)
     root.title("Results")
