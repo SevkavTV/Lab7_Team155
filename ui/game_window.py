@@ -53,8 +53,9 @@ timer_obj = None
 
 
 def init():
-    global root, frame, label_gamemode, label_time, label_score, label_lives
+    global root, frame, label_gamemode, label_time, label_score, label_lives, timer_running
     # Initing window
+    timer_running = True
     root = tkinter.Tk()
     root.title('HACKtheBOB')
     root.geometry('500x500')
