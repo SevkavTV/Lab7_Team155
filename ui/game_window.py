@@ -33,7 +33,10 @@ score = 0
 seconds = seconds_constant
 
 
-def number_to_hearts(n):
+def number_to_hearts(n: int) -> str:
+    '''
+    Create a string with 'n' hearts
+    '''
     return ''.join(['❤️' for _ in range(n)])
 
 
@@ -53,6 +56,9 @@ timer_obj = None
 
 
 def init():
+    '''
+    Initiliaze a window with game field and all other labels
+    '''
     global root, frame, label_gamemode, label_time, label_score, label_lives, timer_running
     # Initing window
     timer_running = True
@@ -102,11 +108,17 @@ def main(height=5, width=5):
 
 
 def reset_timer():
+    '''
+    Update timer
+    '''
     global seconds
     seconds = seconds_constant
 
 
 def substact_life():
+    '''
+    Subtract one life. If they are over, you lose 
+    '''
     global lives
     lives -= 1
     reset_timer()
@@ -116,6 +128,9 @@ def substact_life():
 
 
 def add_point():
+    '''
+    Add one point to your current point value
+    '''
     global score, seconds
     score += 1
     seconds = seconds_constant

@@ -5,6 +5,9 @@ root = var1 = var2 = var3 = None
 
 
 def start_game():
+    '''
+    Go to the game screen and destroy current screen
+    '''
     root.destroy()
     import game_window
     game_window.lives = 3
@@ -13,21 +16,24 @@ def start_game():
 
 
 def init():
+    '''
+    Initiliaze a window with labels and buttons
+    '''
     global root, var1, var2, var3
     root = Tk()
     root.geometry("500x500")
     root.resizable(False, False)
-    root.title("I hope i am not fucked")
+    root.title('HACKtheBOB')
     root.iconbitmap("among_us.ico")
 
     my_image = ImageTk.PhotoImage(Image.open("fr1.gif"))
     my_label = Label(root, image=my_image)
     my_label.place(x=0, y=0)
 
-    start_button = Button(root, text="START", padx=50, command=start_game)
+    start_button = Button(root, text="LOG IN", padx=50, command=start_game)
     start_button.pack(pady=50)
 
-    frame = LabelFrame(root, text="Choose game options")
+    frame = LabelFrame(root, text="Choose password type")
     frame.pack()
 
     var1 = IntVar()
@@ -42,7 +48,7 @@ def init():
     option3 = Checkbutton(frame, text="Prime numbers", variable=var3)
     option3.pack()
 
-    button_quit = Button(root, text="Exit", padx=20, pady=5, command=root.quit)
+    button_quit = Button(root, text="EXIT", padx=20, pady=5, command=root.quit)
     button_quit.pack(pady=100)
 
     root.mainloop()

@@ -12,7 +12,7 @@ def init():
     root = Tk()
     root.geometry("500x500")
     root.resizable(False, False)
-    root.title("Results")
+    root.title('HACKtheBOB')
     root.iconbitmap("among_us.ico")
     image = None
     if status == 'win':
@@ -24,7 +24,7 @@ def init():
     label = Label(root, image=photo)
     label.place(x=0, y=0)
 
-    start_button = Button(root, text="Go to menu", padx=20,
+    start_button = Button(root, text="TRY AGAIN", padx=20,
                           pady=5, command=return_to_menu)
     start_button.place(x=200, y=400)
 
