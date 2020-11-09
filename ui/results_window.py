@@ -8,6 +8,9 @@ root = None
 
 
 def init():
+    '''
+    Initiliaze a window with needable picture
+    '''
     global status, root
     root = Tk()
     root.geometry("500x500")
@@ -32,6 +35,9 @@ def init():
 
 
 def return_to_menu():
+    '''
+    Transition to the start screen.
+    '''
     root.destroy()
     import start_window
     start_window.init()

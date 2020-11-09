@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 from PIL import ImageTk, Image
 
 root = var1 = var2 = var3 = None
@@ -8,11 +9,21 @@ def start_game():
     '''
     Go to the game screen and destroy current screen
     '''
+    if var1.get() or var2.get() or var3.get():
+        root.destroy()
+        import game_window
+        game_window.lives = 3
+        game_window.game_mode = [var1.get(), var2.get(), var3.get()]
+        game_window.start_window()
+    else:
+        messagebox.showinfo('Info', 'You must choose at least one mode')
+
+
+def exit():
+    '''
+    Exit the window
+    '''
     root.destroy()
-    import game_window
-    game_window.lives = 3
-    game_window.game_mode = [var1.get(), var2.get(), var3.get()]
-    game_window.start_window()
 
 
 def init():
@@ -48,7 +59,7 @@ def init():
     option3 = Checkbutton(frame, text="Prime numbers", variable=var3)
     option3.pack()
 
-    button_quit = Button(root, text="EXIT", padx=20, pady=5, command=root.quit)
+    button_quit = Button(root, text="EXIT", padx=20, pady=5, command=exit)
     button_quit.pack(pady=100)
 
     root.mainloop()

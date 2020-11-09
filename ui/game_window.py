@@ -64,6 +64,7 @@ def init():
     timer_running = True
     root = tkinter.Tk()
     root.title('HACKtheBOB')
+    root.iconbitmap("among_us.ico")
     root.geometry('500x500')
     root.resizable(False, False)
     root.configure(background=color_bg)
@@ -138,8 +139,10 @@ def add_point():
 
 
 def click(event):
+    '''
+    Handle click on the board game and determine whether user clicked the right number.
+    '''
     button = event.widget
-    print(game_field[1])
     if event.num == 1 and int(button['text']) in game_field[1]:
         game_field[1].remove(int(button['text']))
         button['text'] = '✅'
@@ -183,12 +186,18 @@ def timer():
 
 
 def endgame(status):
+    '''
+    Function that change parametres for end of the game.
+    '''
     global game_status, timer_running
     timer_running = False
     game_status = status
 
 
 def create_grid():
+    '''
+    Create game field by data from the start screen.
+    '''
     global grid_size, game_field
 
     grid_size = 7
@@ -197,6 +206,9 @@ def create_grid():
 
 
 def start_window():
+    '''
+    Main function to build screen and timer.
+    '''
     init()
     main(grid_size, grid_size)
     timer()
